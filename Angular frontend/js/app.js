@@ -26,13 +26,12 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         method: 'POST',
         data: $scope.data
     }).then(function (httpResponse) {
-        console.log('response:', httpResponse);
-    })
-            //Then get all athletes
+                    //Then get all athletes
             var request = $http.get('https://athletes-form.herokuapp.com/athleteData').then(function (response) {
         $scope.athletes = response.data;
         console.log(response.data);
         return response.data; 
+    })  
     });
         }
     }]);
