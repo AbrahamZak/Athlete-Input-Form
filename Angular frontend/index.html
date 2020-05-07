@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Athlete Form</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+     <div class="card">
+        <article class="card-body">
+    <form name="athleteForm" ng-controller="FormController" novalidate>
+    <fieldset ng-show="step == 1">
+        <h4 class="card-title mb-4 mt-1">Basic Information</h4>
+        <div class="form-group">
+           <label for="name">Name</label>
+           <input class="form-control" type="text" id="name" name="name" ng-model="data.name" />
+        </div>
+                <div class="form-group">
+           <label for="sport">Sport</label>
+           <input class="form-control" type="text" id="sport" name="sport" ng-model="data.sport" />
+        </div>
+                <div class="form-group">
+           <label for="nationality">Nationality</label>
+           <input class="form-control" type="text" id="nationality" name="nationality" ng-model="data.nationality" />
+        </div>
+                <div class="form-group">
+           <label for="gender">Gender</label>
+        <select id="gender" name="gender" ng-model="data.gender" >
+         <option value="Male">Male</option> 
+            <option value="Female">Female</option>  
+        </select>
+
+        </div>
+                <div class="form-group">
+           <label for="dob">Date of Birth</label>
+           <input class="form-control" type="date" id="dob" name="dob" ng-model="data.dob" />
+        </div>
+        <button class="btn btn-outline-dark btn-block" ng-click="nextStep()">Next step</button>
+    </fieldset>
+    <fieldset ng-show="step == 2">
+        <h4 class="card-title mb-4 mt-1">About You</h4>
+       <div class="form-group">
+           <label for="description">Description about you:</label>
+           <textarea class="form-control" type="textarea" id="description" name="description" ng-model="data.description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+           <label for="location">Location:</label>
+           <input class="form-control" type="text" id="nalocationme" name="location" ng-model="data.location" />
+        </div>
+        <div class="form-group">
+           <label for="team">Team:</label>
+           <input class="form-control" type="text" id="team" name="team" ng-model="data.team" />
+        </div>
+        <button class="btn btn-outline-dark btn-block" ng-click="prevStep()">Previous step</button>
+        <button class="btn btn-outline-dark btn-block" ng-click="nextStep()">Next step</button>
+    </fieldset>
+    <fieldset ng-show="step == 3">
+         <h4 class="card-title mb-4 mt-1">Social Media</h4>
+        <div class="form-group">
+           <label for="facebook">Facebook:</label>
+           <input class="form-control" type="text" id="facebook" name="facebook" ng-model="data.facebook" />
+        </div>
+                <div class="form-group">
+           <label for="twitter">Twitter:</label>
+           <input class="form-control" type="text" id="twitter" name="twitter" ng-model="data.twitter" />
+        </div>
+                <div class="form-group">
+           <label for="instagram">Instagram:</label>
+           <input class="form-control" type="text" id="instagram" name="instagram" ng-model="data.instagram" />
+        </div>
+        <button class="btn btn-outline-dark btn-block" ng-click="prevStep()">Previous step</button>
+        <button class="btn btn-outline-dark btn-block" ng-click="nextStep()">Next step</button>
+        </fieldset>
+     <fieldset ng-show="step == 4">
+        <h4 class="card-title mb-4 mt-1">Confirm Information</h4>
+         <p><strong>Name:</strong> {{data.name}} </p>
+         <p><strong>Sport:</strong> {{data.sport}} </p>
+         <p><strong>Nationality:</strong> {{data.nationality}} </p>
+         <p><strong>Gender:</strong> {{data.gender}} </p>
+         <p><strong>Date of Birth:</strong> {{data.dob}} </p>
+         <p><strong>Description:</strong> {{data.description}} </p>
+         <p><strong>Location:</strong> {{data.location}} </p>
+         <p><strong>Team:</strong> {{data.team}} </p>
+         <p><strong>Facebook:</strong> {{data.facebook}} </p>
+         <p><strong>Twitter:</strong> {{data.twitter}} </p>
+         <p><strong>Instagram:</strong> {{data.instagram}} </p>
+             <button class="btn btn-outline-dark btn-block" ng-click="prevStep()">Previous step</button>
+         <p>{{$scope.step}}</p>
+        <button class="btn btn-outline-dark btn-block" ng-click="submitForm(); nextStep()">Submit</button>
+    </fieldset>
+             <fieldset ng-show="step == 5">
+            <h4 class="card-title mb-4 mt-1">All Submitted Athletes</h4>
+            <div ng-repeat="athlete in athletes">
+                <p><strong>Name:</strong> {{athlete.name}}</p>
+                <p><strong>Sport:</strong> {{athlete.sport}}</p>
+                <p><strong>Nationality:</strong> {{athlete.nationality}}</p>
+                <p><strong>Gender:</strong> {{athlete.gender}}</p>
+                <p><strong>DOB:</strong> {{athlete.dob}}</p>
+                <p><strong>Description:</strong> {{athlete.description}}</p>
+                <p><strong>Location:</strong> {{athlete.location}}</p>
+                <p><strong>Team:</strong> {{athlete.team}}</p>
+                <p><strong>Facebook:</strong> {{athlete.facebook}}</p>
+                <p><strong>Twitter:</strong> {{athlete.twitter}}</p>
+                <p><strong>Instagram:</strong> {{athlete.instagram}}</p>
+                <br>
+            </div>
+        </fieldset>
+</form>
+        </article>
+    </div>
+    
+    
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+  <script src="js/app.js"></script>
+  <script src="core/version/version.js"></script>
+  <script src="core/version/version-directive.js"></script>
+  <script src="core/version/interpolate-filter.js"></script>
+</body>
+</html>
