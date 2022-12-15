@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "ejs": "^2.3.1",
-    "express": "~4.9.x"
+    "express": "~4.17.x"
   },
   "engines": {
     "node": "13.8.0"
